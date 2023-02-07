@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 dotenv.config({ path: path.join(__dirname, './config/.env') })
 import express from 'express'
 import { appRouter } from './src/modules/index.router.js'
-const app = express({})
+const app = express()
 // setup port and the baseUrl
 const port = process.env.PORT;
 
