@@ -46,7 +46,7 @@ router.patch("/:id/privileges",
     admin.changeRoles)
 
 
-router.get("/prof", user.profile)
+// router.get("/prof", user.profile)
 
 
 

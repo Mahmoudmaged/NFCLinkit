@@ -15,13 +15,13 @@ export const userProfile = asyncHandler(async (req, res, next) => {
     return user ? res.status(200).json({ message: `Done`, user }) : next(new Error('In-valid user', { cause: 404 }))
 })
 
-export const profile = asyncHandler(async (req, res, next) => {
-    const user = await userModel.find({}).populate([{
-        path: 'contacts',
-        select: "userName email"
-    }])
-    return user ? res.status(200).json({ message: `Done`, user }) : next(new Error('In-valid user', { cause: 404 }))
-})
+// export const profile = asyncHandler(async (req, res, next) => {
+//     const user = await userModel.find({}).populate([{
+//         path: 'contacts',
+//         select: "userName email"
+//     }])
+//     return user ? res.status(200).json({ message: `Done`, user }) : next(new Error('In-valid user', { cause: 404 }))
+// })
 
 export const userSharedProfile = asyncHandler(async (req, res, next) => {
     const user = await findById({
