@@ -35,10 +35,18 @@ router.patch("/updatePassword",
     validation(validators.updatePassword),
     user.updatePassword)
 
+router.patch("/addToContacts",
+    auth(endPoint.addToContacts),
+    validation(validators.addToContacts),
+    user.addToContacts)
+
 router.patch("/:id/privileges",
     auth(endPoint.privileges),
     validation(validators.privileges),
     admin.changeRoles)
+
+
+router.get("/prof", user.profile)
 
 
 

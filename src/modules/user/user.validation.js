@@ -30,8 +30,16 @@ export const basicInfo = {
         }),
         // email: joi.string().email().messages({
         // }),
+
         phone: joi.string().pattern(/[0-9 ]{8,13}$/).messages({
         }),
+        phoneTwo: joi.string().pattern(/[0-9 ]{8,13}$/).messages({
+        }),
+        phoneThree: joi.string().pattern(/[0-9 ]{8,13}$/).messages({
+        }),
+        FourthPhone: joi.string().pattern(/[0-9 ]{8,13}$/).messages({
+        }),
+
         age: joi.number().messages({
         }),
 
@@ -79,6 +87,15 @@ export const updatePassword = {
         }),
     })
 }
+
+
+export const addToContacts = {
+
+    body: joi.object().required().keys({
+        id: joi.string().max(24).min(24).required()
+    })
+}
+
 
 
 export const privileges = {

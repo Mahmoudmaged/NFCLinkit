@@ -1,4 +1,4 @@
-import { findById, findOne, findOneAndUpdate, updateOne } from "../../../../DB/DBMethods.js"
+import { findById, findOne, findOneAndUpdate, updateOne, find } from "../../../../DB/DBMethods.js"
 import userModel from "../../../../DB/model/User.model.js"
 import cloudinary from "../../../services/cloudinary.js"
 import { asyncHandler } from "../../../services/errorHandling.js"
@@ -6,8 +6,20 @@ import bcrypt from 'bcryptjs'
 export const userProfile = asyncHandler(async (req, res, next) => {
     const user = await findById({
         model: userModel,
-        filter: req.user._id
+        filter: req.user._id,
+        populate: [{
+            path: 'contacts',
+            select: "userName email firstName lastName image"
+        }]
     })
+    return user ? res.status(200).json({ message: `Done`, user }) : next(new Error('In-valid user', { cause: 404 }))
+})
+
+export const profile = asyncHandler(async (req, res, next) => {
+    const user = await userModel.find({}).populate([{
+        path: 'contacts',
+        select: "userName email"
+    }])
     return user ? res.status(200).json({ message: `Done`, user }) : next(new Error('In-valid user', { cause: 404 }))
 })
 
@@ -90,6 +102,28 @@ export const updatePassword = asyncHandler(async (req, res, next) => {
         model: userModel,
         filter: { _id: user._id },
         data: { password: hashPassword }
+    })
+    return res.status(200).json({ message: "Done" })
+})
+
+export const addToContacts = asyncHandler(async (req, res, next) => {
+    const { id } = req.body
+    if (req.user._id.toString() == id.toString()) {
+        return next(new Error('Sorry you can not add yourself to your contacts list', { cause: 409 }))
+    }
+    const user = await findOne({
+        model: userModel,
+        filter: { _id: id },
+    })
+    if (!user) {
+        return next(new Error('In-valid Account', { cause: 400 }))
+    }
+
+
+    await updateOne({
+        model: userModel,
+        filter: { _id: req.user._id },
+        data: { $addToSet: { contacts: user._id } }
     })
     return res.status(200).json({ message: "Done" })
 })

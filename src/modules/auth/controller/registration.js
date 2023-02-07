@@ -6,13 +6,13 @@ import { sendEmail } from '../../../services/email.js'
 import { asyncHandler } from '../../../services/errorHandling.js'
 export const signup = asyncHandler(
     async (req, res, next) => {
-        const { userName, email, password } = req.body
+        const { firstName , lastName, email, password } = req.body
         const user = await findOne({ model: userModel, filter: { email }, select: 'email' })
         if (user) {
             return next(Error('Email Exist', { cause: 409 }))
         } else {
             const hash = bcrypt.hashSync(password, parseInt(process.env.SALTROUND))
-            const newUser = new userModel({ userName, email, password: hash })
+            const newUser = new userModel({ firstName , lastName , email, password: hash })
 
             const token = jwt.sign({ id: newUser._id }, process.env.emailToken)
             const link = `${req.protocol}://${req.headers.host}/auth/confirmEmail/${token}`

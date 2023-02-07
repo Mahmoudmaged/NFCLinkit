@@ -8,5 +8,6 @@ export const endPoint = {
     userList: [roles.SuperAdmin, roles.Admin],
     block: [roles.SuperAdmin],
     unblock: [roles.SuperAdmin],
-    profile: [roles.SuperAdmin, roles.Admin, roles.User]
+    profile: [roles.SuperAdmin, roles.Admin, roles.User],
+    addToContacts: [roles.SuperAdmin, roles.Admin, roles.User],
 }

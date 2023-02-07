@@ -38,7 +38,7 @@ export const appRouter = (app) => {
         await res.header('Access-Control-Allow-Headers', '*')
         await res.header("Access-Control-Allow-Private-Network", 'true')
         await res.header('Access-Control-Allow-Methods','*')
-        console.log("kijhiojioji");
+        console.log("Origin Work");
         next();
     });
     app.use(express.json())
@@ -48,7 +48,7 @@ export const appRouter = (app) => {
         await res.header('Access-Control-Allow-Headers', '*')
         await res.header("Access-Control-Allow-Private-Network", 'true')
         await res.header('Access-Control-Allow-Methods','*')
-        console.log("kijhiojioji");
+        console.log("Origin Work");
         next();
     });
     // setup port and the baseUrl
@@ -59,7 +59,7 @@ export const appRouter = (app) => {
     }
     //Setup API Routing 
     app.get("/", (req, res, next) => {
-        res.status(200).send("<h1>Welcome to Linkit for developer home Page</h1>")
+        res.status(200).send("<h1>Welcome to Link-It for developer home Page</h1>")
     })
     app.use(`/auth`, authRouter)
     app.use(`/user`, userRouter)

@@ -5,9 +5,14 @@ import joi from 'joi'
 export const signup = {
 
     body: joi.object().required().keys({
-        userName: joi.string().min(2).max(20).required().messages({
-            'any.required': "userName field is required",
-            'any.empty': "empty userName is not acceptable"
+        firstName : joi.string().min(2).max(20).required().messages({
+            'any.required': "firstName field is required",
+            'any.empty': "empty firstName is not acceptable"
+        }),
+
+        lastName: joi.string().min(2).max(20).required().messages({
+            'any.required': "lastName field is required",
+            'any.empty': "empty lastName is not acceptable"
         }),
 
         email: joi.string().email().required().messages({

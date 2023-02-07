@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 import { roles } from "../../src/middleware/auth.js";
 
 
@@ -7,19 +7,21 @@ const userSchema = new Schema({
 
     userName: {
         type: String,
-        required: [true, 'userName is required'],
+        // required: [true, 'userName is required'],
         min: [2, 'minimum length 2 char'],
         max: [20, 'max length 2 char']
 
     },
     firstName: {
         type: String,
+        required: [true, 'userName is required'],
         min: [2, 'minimum length 2 char'],
         max: [20, 'max length 2 char']
 
     },
     lastName: {
         type: String,
+        required: [true, 'userName is required'],
         min: [2, 'minimum length 2 char'],
         max: [20, 'max length 2 char']
 
@@ -40,6 +42,17 @@ const userSchema = new Schema({
     phone: {
         type: String,
     },
+    phoneTwo: {
+        type: String,
+    },
+
+    phoneThree: {
+        type: String,
+    },
+    FourthPhone: {
+        type: String,
+    },
+
     socialLinks: {
         type: []
     },
@@ -66,7 +79,9 @@ const userSchema = new Schema({
     image: String,
     imagePublicId: String,
     age: String,
+
     gender: { type: String, default: "Male", enum: ['Male', 'Female'] },
+    contacts: [{ type: Types.ObjectId, ref: 'User' }]
 
 }, {
     timestamps: true
