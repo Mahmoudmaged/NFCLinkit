@@ -3,16 +3,14 @@ import userRouter from './user/user.router.js'
 import productRouter from './product/product.router.js'
 import orderRouter from './order/order.router.js'
 import cartRouter from './cart/cart.router.js'
-
-
-import express from 'express'
-import morgan from 'morgan'
-import cors from 'cors'
 import { globalErrorHandling } from '../services/errorHandling.js'
 import connectDB from '../../DB/connection.js'
+import morgan from 'morgan'
+import cors from 'cors'
+
 //convert Buffer Data
 
-export const appRouter = (app) => {
+export const appRouter = (app , express) => {
     //convert Buffer Data
 
     // var whitelist = ['https://linkitqa.netlify.app']
@@ -33,6 +31,7 @@ export const appRouter = (app) => {
     //     optionSuccessStatus:200
     // }
     // app.use(cors(corsOptions));
+    
     app.use(async (req, res, next) => {
         await res.header('Access-Control-Allow-Origin', '*');
         await res.header('Access-Control-Allow-Headers', '*')
@@ -41,7 +40,7 @@ export const appRouter = (app) => {
         console.log("Origin Work");
         next();
     });
-    app.use(express.json())
+    app.use(express.json({}))
     app.use(express.urlencoded({ extended: false }))
     app.use(async (req, res, next) => {
         await res.header('Access-Control-Allow-Origin', '*');
