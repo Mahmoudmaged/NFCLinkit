@@ -58,7 +58,7 @@ export const appRouter = (app , express) => {
     }
     //Setup API Routing 
     app.get("/", (req, res, next) => {
-        res.status(200).send("<h1>Welcome to Link-It for developer home Page</h1>")
+        res.status(200).send("<h1>Welcome to Link-It for developer home Page.</h1>")
     })
     app.use(`/auth`, authRouter)
     app.use(`/user`, userRouter)
