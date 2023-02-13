@@ -31,13 +31,13 @@ export const basicInfo = {
         // email: joi.string().email().messages({
         // }),
 
-        phone: joi.string().pattern(/[0-9 ]{8,13}$/).messages({
+        phone: joi.string().pattern(/[0-9 ]{8,20}$/).messages({
         }),
-        phoneTwo: joi.string().pattern(/[0-9 ]{8,13}$/).messages({
+        phoneTwo: joi.string().pattern(/[0-9 ]{8,20}$/).messages({
         }),
-        phoneThree: joi.string().pattern(/[0-9 ]{8,13}$/).messages({
+        phoneThree: joi.string().pattern(/[0-9 ]{8,20}$/).messages({
         }),
-        FourthPhone: joi.string().pattern(/[0-9 ]{8,13}$/).messages({
+        FourthPhone: joi.string().pattern(/[0-9 ]{8,20}$/).messages({
         }),
 
         age: joi.number().messages({
